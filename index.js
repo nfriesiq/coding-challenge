@@ -71,7 +71,7 @@ export class DataProcessor {
       throw new Error("No data loaded. Please load a CSV first.");
     }
 
-    const idsSet = new Set(subjectIDs.map(String));
+    const idsSet = new Set(subjectIDs.map(Number));
 
     return this.rows
       .filter((row) => idsSet.has(row.id))
