@@ -44,7 +44,7 @@ export class DataProcessor {
   trieRoot = new TrieNode();
 
   async loadCSV(filepath) {
-    const csvString = await readFile(filepath, { encoding: "utf-16le" });
+    const csvString = await readFile(filepath, { encoding: "utf-8" });
     const lines = csvString.trim().split("\n");
     if (lines.length < 2) {
       throw new Error("Invalid CSV: No data rows available.");
