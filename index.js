@@ -148,7 +148,7 @@ export class DataProcessor {
     let node = this.trieRoot;
     for (const char of prefix) {
       if (!node.children[char]) {
-        break;
+        break; // No matches return current node
       }
       node = node.children[char];
     }
