@@ -44,7 +44,7 @@ export class DataProcessor {
   trieRoot = new TrieNode();
 
   async loadCSV(filepath) {
-    const csvString = await readFile(filepath, { encoding: "utf-16le" });
+    const csvString = await readFile(filepath, { encoding: "utf-8" });
     const lines = csvString.trim().split("\n");
     if (lines.length < 2) {
       throw new Error("Invalid CSV: No data rows available.");
@@ -71,7 +71,7 @@ export class DataProcessor {
       throw new Error("No data loaded. Please load a CSV first.");
     }
 
-    const idsSet = new Set(subjectIDs.map(String));
+    const idsSet = new Set(subjectIDs.map(Number));
 
     return this.rows
       .filter((row) => idsSet.has(row.id))
@@ -148,7 +148,7 @@ export class DataProcessor {
     let node = this.trieRoot;
     for (const char of prefix) {
       if (!node.children[char]) {
-        return new Set(); // No matches
+        break; // No matches return current node
       }
       node = node.children[char];
     }
